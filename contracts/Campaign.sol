@@ -7,8 +7,8 @@ contract CampaignFactory{
 
     // Campaign public camp;
 
-    function createCampaign(uint minimum) public{
-        address newCampaign = address(new Campaign(minimum,msg.sender));
+    function createCampaign(uint minimum, string memory desc) public{
+        address newCampaign = address(new Campaign(minimum,msg.sender,desc));
         deployedCampaigns.push(newCampaign);
     }
 
@@ -31,12 +31,14 @@ contract Campaign{
     }
 
 
+    string public description;
+
     mapping(uint=>Request) public requests;
     address public manager;
     uint public minimumContribution;
     mapping(address=>bool) public approvers;
     uint public approversCount;
-    uint numRequests;
+    uint public numRequests;
 
 
     modifier restrictedToManager(){
@@ -45,9 +47,10 @@ contract Campaign{
     }
 
 
-    constructor(uint minimum, address creater){
+    constructor(uint minimum, address creater ,string memory desc){
         manager = creater;
         minimumContribution = minimum;
+        description = desc;
     }
 
 
@@ -98,6 +101,17 @@ contract Campaign{
         payable(request.recipient).transfer(request.value);
 
         request.complete=true;
+    }
+
+    function getSummary() public view returns(uint,uint,uint,uint,address,string memory){
+        return (
+            minimumContribution,
+            address(this).balance,
+            numRequests,
+            approversCount,
+            manager,
+            description
+        );
     }
 
 }
