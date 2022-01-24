@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --timeout 10000",
     "dev": "npm run dev --prefix client",
-    "deploy": "node compile && node deploy"
+    "build": "node compile && node deploy"
   },
   "keywords": [],
   "author": "",
