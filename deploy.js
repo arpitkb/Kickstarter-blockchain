@@ -1,16 +1,15 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const Web3 = require("web3");
 const Factory = require("./build/CampaignFactory.json");
-
-const mnemonicPhrase =
-  "melody worth inject food moment only cousin before fiscal lounge sail better"; // 12 word mnemonic
+const path = require("path");
+const fs = require("fs-extra");
+require("dotenv").config();
 
 let provider = new HDWalletProvider({
   mnemonic: {
-    phrase: mnemonicPhrase,
+    phrase: process.env.mnemonicPhrase,
   },
-  providerOrUrl:
-    "https://rinkeby.infura.io/v3/1fb49a4010ea418da65fb4698fdbf58f",
+  providerOrUrl: process.env.rinkebyURL,
 });
 
 const web3 = new Web3(provider);
@@ -20,7 +19,6 @@ const deploy = async () => {
   const accList = await web3.eth.getAccounts();
 
   console.log("-----------Attempting to deploy the contract---------");
-  console.log("Account used = ", accList[0]);
 
   const contract = await new web3.eth.Contract(Factory.abi)
     .deploy({
@@ -30,6 +28,15 @@ const deploy = async () => {
       from: accList[0],
       gas: "2000000",
     });
+
+  //check to see if build directory exist, if not than create
+
+  const buildPath = path.resolve(__dirname, "build");
+  fs.ensureDirSync(buildPath);
+
+  fs.outputJSONSync(path.resolve(buildPath, `address.json`), {
+    address: contract.options.address,
+  });
 
   console.log("Contract deployed successfully to ", contract.options.address);
 };

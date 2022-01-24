@@ -7,6 +7,7 @@ import { Alert, Col, Row } from "react-bootstrap";
 import ContributeForm from "../../../components/campaigns/ContributeForm";
 import web3 from "../../../ethereum/web3";
 import Link from "next/link";
+import Head from "next/head";
 
 const Campaign = (props) => {
   const router = useRouter();
@@ -34,10 +35,18 @@ const Campaign = (props) => {
 
   return (
     <>
+      <Head>
+        <title>Campaign Details | Kickstarter</title>
+        <meta name='description' content='View details of a campaign' />
+      </Head>
       <h3>Campaign details</h3>
-      <Alert variant='warning'>
-        Manager Address :{" "}
-        <div className='manager d-md-inline'> {props.manager}</div>
+      <Alert variant='warning' className='text-sm'>
+        <i className='fas me-1 fa-user-cog'></i>
+        Manager
+        <div className='manager d-md-inline'>
+          {" "}
+          <small>{props.manager}</small>
+        </div>
       </Alert>
       <Alert className='py-4 mt-4' variant='success'>
         {props.description}

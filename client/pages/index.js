@@ -7,7 +7,7 @@ function HomePage(props) {
   return (
     <>
       <Head>
-        <title>Homepage</title>
+        <title>Homepage | Kickstarter</title>
         <meta name='description' content='Browse a list of campaigns' />
       </Head>
       <div className='d-flex justify-content-between align-items-center'>

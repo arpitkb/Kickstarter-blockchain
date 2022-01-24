@@ -6,6 +6,7 @@ import { Alert, Badge, Button, Table } from "react-bootstrap";
 import { getInstance } from "../../../../ethereum/campaign";
 import Loader from "../../../../components/UI/Loader";
 import RRow from "../../../../components/Request/RRow";
+import Head from "next/head";
 
 const Requests = () => {
   const router = useRouter();
@@ -46,15 +47,27 @@ const Requests = () => {
 
   return (
     <>
+      <Head>
+        <title>Requests | Kickstarter</title>
+        <meta
+          name='description'
+          content='Browse request status of all your campaign requests'
+        />
+      </Head>
+
       <div className='d-flex justify-content-between'>
         <h3>
           Requests <Badge bg='info'>{num}</Badge>{" "}
         </h3>
 
         {loading && <Loader />}
-        <Link href={`/campaigns/${campaignAddress}/requests/new`}>
-          <a className='btn btn-info'>Create request</a>
-        </Link>
+        <div>
+          <Link href={`/campaigns/${campaignAddress}/requests/new`}>
+            <a className='btn btn-info'>
+              New <i className='fas fa-plus ms-2'></i>
+            </a>
+          </Link>
+        </div>
       </div>
       {!loading && error && (
         <Alert
@@ -68,12 +81,12 @@ const Requests = () => {
         </Alert>
       )}
 
-      <Table responsive hover>
+      <Table responsive>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Description</th>
-            <th className='ps-0'>Amount (ETH)</th>
+            <th className='ps-0'>ID</th>
+            <th className='ps-0'>Description</th>
+            <th className='ps-0'>Amount</th>
             <th className='px-0'>Recipient</th>
             <th>Approvals</th>
             <th>Approve</th>

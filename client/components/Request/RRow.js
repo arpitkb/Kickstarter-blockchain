@@ -82,9 +82,11 @@ const RRow = (props) => {
 
   return (
     <tr key={idx}>
-      <td>{idx}</td>
-      <td>{req.description}</td>
-      <td>{web3.utils.fromWei(req.value, "ether")}</td>
+      <td className='ps-0'>{idx}</td>
+      <td className='ps-0'>{req.description}</td>
+      <td className='px-0'>
+        {web3.utils.fromWei(req.value, "ether")} <i class='fab fa-ethereum'></i>
+      </td>
       <td className='px-0'>
         {req.recipient.substring(0, 8)}...
         <i
@@ -108,7 +110,13 @@ const RRow = (props) => {
               variant='success'
               size='sm'
             >
-              {loadinga ? <Spinner animation='border' size='sm' /> : "Approve"}
+              {loadinga ? (
+                <Spinner animation='border' size='sm' />
+              ) : (
+                <>
+                  Approve<i className='ms-1 fas fa-check'></i>
+                </>
+              )}
             </Button>
           </td>
           <td className='ps-0'>
@@ -125,11 +133,13 @@ const RRow = (props) => {
               ) : (
                 <>
                   {eligible ? (
-                    "Finalize"
+                    <>
+                      Finalize<i className='ms-1 fas fa-angle-double-right'></i>
+                    </>
                   ) : (
                     <>
                       <i className='fas me-1 fa-exclamation-triangle'></i>
-                      Finalize{" "}
+                      Finalize
                     </>
                   )}{" "}
                 </>
@@ -140,7 +150,7 @@ const RRow = (props) => {
       ) : (
         <td colSpan={2}>
           <Button disabled variant='success'>
-            Request completed
+            Completed<i className='ms-1 fas fa-check'></i>
           </Button>
         </td>
       )}

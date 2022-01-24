@@ -1,14 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
-import {
-  Button,
-  Form,
-  Image,
-  InputGroup,
-  Alert,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Button, Form, InputGroup, Alert } from "react-bootstrap";
 import Loader from "../../components/UI/Loader";
 
 const ContributeForm = (props) => {
@@ -48,7 +40,7 @@ const ContributeForm = (props) => {
 
   return (
     <div>
-      <h3 className='py-3'>Contribute</h3>
+      <h3 className='py-3'>Contribute Now</h3>
       {!loading && error && (
         <Alert variant='danger' onClose={() => setError(null)} dismissible>
           <h5>error!</h5>
@@ -65,7 +57,7 @@ const ContributeForm = (props) => {
       {loading && <Loader />}
       <Form className='mb-5' onSubmit={submitHandler}>
         <Form.Group className='mb-3' controlId='ether'>
-          <Form.Label>Enter amount (in Eth) to contribute</Form.Label>
+          <Form.Label>Enter amount</Form.Label>
           <InputGroup>
             <Form.Control
               disabled={loading}
@@ -75,16 +67,19 @@ const ContributeForm = (props) => {
               placeholder='Enter amount in Eth'
             />
             <InputGroup.Text>
-              <Image
-                fluid
-                src='https://img.icons8.com/color/25/000000/ethereum.png'
-              />
+              <i className='fab fa-ethereum'></i>
             </InputGroup.Text>
           </InputGroup>
         </Form.Group>
 
         <Button disabled={loading} type='submit' variant='success'>
-          {loading ? "Contributing..." : "Contribute"}
+          {loading ? (
+            "Contributing..."
+          ) : (
+            <>
+              Contribute<i className='fas ms-2 fa-location-arrow'></i>
+            </>
+          )}
         </Button>
       </Form>
     </div>

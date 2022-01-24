@@ -18,11 +18,16 @@ const CampaignDetails = (props) => {
     <>
       <div className='d-flex flex-wrap justify-content-center justify-content-xl-start'>
         <Box
-          attribute='Campaign Balance'
-          value={<span>{web3.utils.fromWei(balance, "ether")} &Xi;</span>}
+          attribute='Balance'
+          value={
+            <span>
+              {web3.utils.fromWei(balance, "ether")}{" "}
+              <i className='fab fa-ethereum'></i>
+            </span>
+          }
         />
         <Box
-          attribute='Minimum Contribution'
+          attribute='Min. Contribution'
           value={`${minimumContribution} wei`}
         />
       </div>
