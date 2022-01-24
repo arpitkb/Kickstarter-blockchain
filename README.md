@@ -1,4 +1,5 @@
 # Kickstarter clone on top of blockchain
+
 ### A smart contract for flow of money between investors and suppliers
 
 ## Usage (Development only)
@@ -12,7 +13,7 @@ rinkebyURL = create a account on infura and add rinkeby test net node url
 mnemonicPhrase = 12 words phrase of metamask (Metamask is required)
 ```
 
-### Install Dependencies 
+### Install Dependencies
 
 ```
 npm install
@@ -25,7 +26,7 @@ npm install
 #### deploy contract on rinkeby testnet
 
 ```
-npm run deploy
+npm run build
 ```
 
 #### run in dev mode
