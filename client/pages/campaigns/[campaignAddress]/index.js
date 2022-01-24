@@ -17,7 +17,6 @@ const Campaign = (props) => {
   };
 
   const onContribute = async (amt) => {
-    console.log(amt);
     const campaign = getInstance(props.address);
     const accs = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -78,7 +77,7 @@ export async function getStaticPaths() {
         },
       },
     ],
-    fallback: "blocking",
+    fallback: true,
   };
 }
 

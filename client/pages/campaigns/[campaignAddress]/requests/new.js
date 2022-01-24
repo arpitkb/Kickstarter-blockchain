@@ -52,8 +52,6 @@ const NewRequest = () => {
 
       const campaign = getInstance(campaignAddress);
       const manager = await campaign.methods.manager().call();
-      console.log("accs[0] = ", accs[0]);
-      console.log("manager = ", manager);
       if (accs[0] !== manager.toLowerCase()) {
         throw new Error("Only manager can create the requests");
       }

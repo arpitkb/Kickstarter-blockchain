@@ -85,15 +85,16 @@ const RRow = (props) => {
       <td className='ps-0'>{idx}</td>
       <td className='ps-0'>{req.description}</td>
       <td className='px-0'>
-        {web3.utils.fromWei(req.value, "ether")} <i class='fab fa-ethereum'></i>
+        {web3.utils.fromWei(req.value, "ether")}{" "}
+        <i className='fab fa-ethereum'></i>
       </td>
       <td className='px-0'>
-        {req.recipient.substring(0, 8)}...
+        {req.recipient.substring(0, 7)}..
         <i
           onClick={() => {
             copyAddress(req.recipient);
           }}
-          className='fas fa-copy'
+          className='fas fa-copy d-inline'
         ></i>
       </td>
       <td>

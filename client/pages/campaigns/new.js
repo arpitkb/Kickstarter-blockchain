@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import {
-  Button,
-  Form,
-  Image,
-  InputGroup,
-  Alert,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Button, Form, InputGroup, Alert, Row, Col } from "react-bootstrap";
 import factory from "../../ethereum/factory";
 import Loader from "../../components/UI/Loader";
 
@@ -98,10 +90,7 @@ const CreateCamapign = () => {
                 placeholder='Enter amount in Wei'
               />
               <InputGroup.Text>
-                <Image
-                  fluid
-                  src='https://img.icons8.com/color/25/000000/ethereum.png'
-                />
+                <i className='fab fa-ethereum'></i>
               </InputGroup.Text>
             </InputGroup>
           </Form.Group>
